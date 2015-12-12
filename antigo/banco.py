@@ -1,12 +1,26 @@
 #!/usr/bin/python
+
 import sqlite3
+
 conn = sqlite3.connect('test.db')
 print "Opened database successfully";
-cursor = conn.execute("SELECT id, name, address, salary from COMPANY")
+
+cursor = conn.execute("SELECT id, name, address, salary  from COMPANY")
 #for row in cursor:
-#   print "ID = ", row[0] print "NAME = ", row[1] print "ADDRESS = ", row[2] print "SALARY = ", row[3], "\n" print "Operation done successfully"; 
+#   print "ID = ", row[0]
+#   print "NAME = ", row[1]
+#   print "ADDRESS = ", row[2]
+#   print "SALARY = ", row[3], "\n"
+
+#print "Operation done successfully";
 #cursor.fetchall()
 cursor.total_changes()
-#print tamano conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
-#      VALUES (6, 'Paul', 32, 'California', 20000.00 )"); conn.commit()
+
+#print tamano
+
+#conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
+#      VALUES (6, 'Paul', 32, 'California', 20000.00 )");
+
+#conn.commit()
+
 conn.close()
