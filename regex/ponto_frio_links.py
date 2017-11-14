@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 #from ponto_frio_valor import *
 
 from bs4 import BeautifulSoup 
@@ -10,20 +11,22 @@ def buscar_links(url):
     lista = []
     i = 0
     r = requests.get(url)
-    soup = BeautifulSoup(r.text)
-    for a in soup.findAll('a',{'class':'link url'}):#href=True):
-        link = a['title']#a['href']
+    soup = BeautifulSoup(r.text, "html.parser")     # N lembro, tem haver com a biblioteca de PARSE
+    #print soup
+    for a in soup.findAll('a',{'class':'link url'}):#href=True):    # Procura dentro o códido HTML essa conf, para depois encontrar o link
+        #link = a['title']#a['href']
+        link = a['href']        # HREF é a tag onde encontra-se o link para acessar o jogo
         i += 1
-        lista.append(link)
+        lista.append(link)      # Adicina os links do produtos em uma pilha/fila para posteriormente acessar os produtos
         links = str(link).strip('[]')#.replace("u", "")#.replace("'", "")
-        #print str(i) + ") " + str(links)
-	buscar_links2(links)
+        
+	buscar_links2(links)          # Chama o método para acessar o link de cada produto, pegando o nome e valor 
 	print links
-    if i != 0:
+  #  if i != 0:
 	return True
    # print "\n>> Total = %d \n" % i
    # sys.exit() 
-    return False
+   # return False
 
 for arg in sys.argv:
     if arg == "-l":
